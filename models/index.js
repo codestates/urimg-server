@@ -5,7 +5,7 @@ const path = require('path');
 const Sequelize = require('sequelize');
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
-const config = require(__dirname + '/../config/config.json')[env];
+const config = require(__dirname + '/../config/config.js')[env];
 const db = {};
 
 let sequelize;
@@ -33,32 +33,5 @@ Object.keys(db).forEach(modelName => {
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
-
-// associations 설정
-const { users, images, users_likes, comments } = sequelize.models;
-comments.belongsTo(users);
-comments.belongsTo(images);
-images.belongsTo(users);
-images.hasMany(comments);
-users.hasMany(images);
-users.hasMany(comments);
-
-users.belongsToMany(images, {
-  through: 'users_likes',
-  foreignKey: 'user_id';
-});
-
-images.belongsToMany(users, {
-  through: 'users_likes',
-  foreignKey: 'image_id'
-});
-
-users_likes.belongsTo(users, {
-  foreignKey: 'user_id'
-});
-
-users_likes.belongsTo(images, {
-  foreignKey: 'image_id'
-});
 
 module.exports = db;
