@@ -54,13 +54,12 @@ module.exports = {
   },
 
   patch: (req, res) => {
-    const { password, user_name, profile_image } = req.body;
-    console.log(password, user_name, profile_image);
     const accessTokenData = isAuthorized(req);
     if(!accessTokenData) {
       return res.status(400).send('Bad request');
     }
     const { email } = accessTokenData;
+    const { password, user_name, profile_image } = req.body;
     Users.update(
       { password, user_name, profile_image },
       { where: { email } }
