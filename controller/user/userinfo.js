@@ -43,6 +43,7 @@ module.exports = {
       else {
         Users.destroy({ where: { email } })
         .then(() => {
+          res.clearCookie('refresh_token');
           res.status(200).send('User successfully deleted');
         })
       }
