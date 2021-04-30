@@ -15,4 +15,10 @@ router.delete('/userinfo', userController.userinfo.delete);
 //* PATCH /user/userinfo
 router.patch('/userinfo', userController.userinfo.patch);
 
+// * POST /user/signup
+router.post('/signup', userController.signup.post);
+
+//* POST /user/logout
+router.post('/logout', userController.logout.post);
+
 module.exports = router;
