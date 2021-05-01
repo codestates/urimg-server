@@ -33,16 +33,19 @@ module.exports = {
     try {
       return verify(token, process.env.ACCESS_SECRET);
     } catch (err) {
-      console.log(err);
       return null;
     }
   },
 
-  checkRefeshToken: (refresh_token) => {
+  checkRefeshToken: (req) => {
+    const refreshToken = req.cookies.refresh_token;
+    if(!refreshToken) {
+      return null;
+    }
     try {
-      return verify(refresh_token, process.env.REFRESH_SECRET);
+      return verify(refreshToken, process.env.REFRESH_SECRET);
     } catch (err) {
       return null;
     }
-  },
+  }
 };
