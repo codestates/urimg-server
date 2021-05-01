@@ -5,7 +5,7 @@ module.exports = {
   get: (req, res) => {
     const accessTokenData = isAuthorized(req);
     if(!accessTokenData) {
-      return res.status(401).send('Bad request');
+      return res.status(401).send("Access token expired");
     }
     const { email } = accessTokenData;
     Users.findOne({ where: { email } })
@@ -32,7 +32,7 @@ module.exports = {
   delete: (req, res) => {
     const accessTokenData = isAuthorized(req);
     if(!accessTokenData) {
-      return res.status(400).send('Bad request');
+      return res.status(401).send("Access token expired");
     }
     const { email } = accessTokenData;
     Users.findOne({ where: { email } })
@@ -56,7 +56,7 @@ module.exports = {
   patch: (req, res) => {
     const accessTokenData = isAuthorized(req);
     if(!accessTokenData) {
-      return res.status(400).send('Bad request');
+      return res.status(401).send("Access token expired");
     }
     const { email } = accessTokenData;
     const { password, user_name, profile_image } = req.body;
