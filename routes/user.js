@@ -21,4 +21,7 @@ router.post('/signup', userController.signup.post);
 //* POST /user/logout
 router.post('/logout', userController.logout.post);
 
+//* GET /user/accesstoken
+router.get('/accesstoken', userController.accesstoken.get);
+
 module.exports = router;
