@@ -13,7 +13,6 @@ module.exports = (sequelize, DataTypes) => {
       Users_Likes.belongsTo(models.Users, {
         foreignKey: 'user_id'
       });
-
       Users_Likes.belongsTo(models.Images, {
         foreignKey: 'image_id'
       });

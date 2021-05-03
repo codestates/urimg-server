@@ -10,8 +10,8 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Images.belongsTo(models.Users);
       Images.hasMany(models.Comments);
+      Images.belongsTo(models.Users, { foreignKey: 'user_id' });
       Images.belongsToMany(models.Users, {
         through: 'Users_Likes',
         foreignKey: 'image_id'
