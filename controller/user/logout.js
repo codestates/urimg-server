@@ -4,7 +4,7 @@ module.exports = {
   post: (req, res) => {
     const accessTokenData = isAuthorized(req);
     if(!accessTokenData) {
-      return res.status(400).send("You're currently not logged in");
+      return res.status(401).send("Access token expired");
     }
     else {
       res.clearCookie('refresh_token');
