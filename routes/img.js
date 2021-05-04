@@ -9,4 +9,8 @@ router.post('/like', imgController.like.post);
 
 router.get('/list', imgController.list.get);
 
+router.get('/comment', imgController.comment.get)
+
+router.post('/comment', imgController.comment.post)
+
 module.exports = router;
