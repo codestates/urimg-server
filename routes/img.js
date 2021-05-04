@@ -7,4 +7,8 @@ router.post('/upload', imgController.upload.post);
 
 router.get('/mypage', imgController.mypage.get);
 
+router.post('/like', imgController.like.post);
+
+router.get('/list', imgController.list.get);
+
 module.exports = router;
