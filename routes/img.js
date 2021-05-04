@@ -9,4 +9,6 @@ router.post('/like', imgController.like.post);
 
 router.get('/list', imgController.list.get);
 
+router.get('/:id', imgController.id.get);
+
 module.exports = router;
