@@ -1,4 +1,8 @@
 module.exports = {
   upload: require('./upload'),
-  like: require('./like')
+  
+  like: require('./like'),
+
+  list: require('./list')
+
 };
