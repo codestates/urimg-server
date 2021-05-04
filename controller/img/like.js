@@ -31,5 +31,25 @@ module.exports = {
       console.log(err);
       res.status(500).send('err');
     });
+  },
+  delete: (req, res) => {
+    const accessTokenData = isAuthorized(req);
+    if(!accessTokenData) {
+      return res.status(401).send("Access token expired");
+    }
+
+    const { id } = accessTokenData;
+    const { image_id } = req.body;
+
+    Users_Likes.destroy({ where: {
+      user_id: id,
+      image_id: image_id
+    }}).then(() => {
+      Images.decrement('likes', { where: { id: image_id } });
+      res.status(200).send('Unliked a image');
+    }).catch((err) => {
+      console.log(err);
+      res.status(500).send('err');
+    })
   }
 }

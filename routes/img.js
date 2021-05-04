@@ -9,4 +9,6 @@ router.post('/like', imgController.like.post);
 
 router.get('/list', imgController.list.get);
 
+router.delete('/like', imgController.like.delete);
+
 module.exports = router;
