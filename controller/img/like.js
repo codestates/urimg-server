@@ -1,0 +1,25 @@
+const { Images, Users_Likes } = require('../../models');
+const { isAuthorized } = require('../tokenFunctions');
+
+module.exports = {
+  post: (req, res) => {
+    const accessTokenData = isAuthorized(req);
+    if(!accessTokenData) {
+      return res.status(401).send("Access token expired");
+    }
+
+    const { id } = accessTokenData;
+    const { image_id } = req.body;
+
+    Users_Likes.create({
+      user_id: id,
+      image_id: image_id
+    }).then(() => {
+      Images.increment('likes', { where: { id: image_id } });
+      res.status(201).send('Liked a image');
+    }).catch((err) => {
+      console.log(err);
+      res.status(500).send('err');
+    })
+  }
+}
