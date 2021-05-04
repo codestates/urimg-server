@@ -11,15 +11,25 @@ module.exports = {
     const { id } = accessTokenData;
     const { image_id } = req.body;
 
-    Users_Likes.create({
+    Users_Likes.findOne({ where: {
       user_id: id,
       image_id: image_id
-    }).then(() => {
-      Images.increment('likes', { where: { id: image_id } });
-      res.status(201).send('Liked a image');
+    }}).then((data) => {
+      if(!data) {
+        Users_Likes.create({
+          user_id: id,
+          image_id: image_id
+        }).then(() => {
+          Images.increment('likes', { where: { id: image_id } });
+          res.status(201).send('Liked a image');
+        })
+      }
+      else {
+        res.status(400).send('Image already liked');
+      }
     }).catch((err) => {
       console.log(err);
       res.status(500).send('err');
-    })
+    });
   }
 }
