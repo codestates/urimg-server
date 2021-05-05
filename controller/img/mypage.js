@@ -9,7 +9,7 @@ module.exports = {
     }
 
     const { id } = accessTokenData;
-    const { type } = req.body;
+    const { type } = req.query;
     const images = [];
 
     if(type === 'upload') {

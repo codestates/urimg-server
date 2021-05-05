@@ -3,8 +3,8 @@ const { isAuthorized } = require('../tokenFunctions');
 
 module.exports = {
   get: async (req, res) => {
-    console.log(req.body);
-    const { image_id } = req.body;
+
+    const { image_id } = req.query;
     const comments = [];
 
     const data = await Comments.findAll({
