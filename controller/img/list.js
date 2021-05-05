@@ -12,9 +12,7 @@ module.exports = {
       delete key.dataValues.user_id;
       let userData = await Users.findOne({
         where: { id: user_id },
-        attributes: {
-          exclude: ['password', 'email', 'createdAt', 'updatedAt']
-        }
+        attributes: ['id', 'user_name', 'profile_image']
       });
       images.push({
         ...key.dataValues,
