@@ -39,7 +39,7 @@ module.exports = {
     console.log(images);
     return res.status(200).send({
       data: {
-        count: data.count,
+        total: data.count,
         images: [
           ...images
         ]
