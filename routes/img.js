@@ -17,6 +17,8 @@ router.post('/comment', imgController.comment.post);
 
 router.delete('/like', imgController.like.delete);
 
+router.post('/search', imgController.search.post);
+
 router.get('/like', imgController.like.get);
 
 router.get('/:id', imgController.id.get);

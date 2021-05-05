@@ -3,6 +3,7 @@ const { isAuthorized } = require('../tokenFunctions');
 
 module.exports = {
   get: async (req, res) => {
+    console.log(req.body);
     const { image_id } = req.body;
     const comments = [];
 
@@ -10,8 +11,8 @@ module.exports = {
       where: { image_id },
       attributes: ['comment', 'createdAt', 'user_id']
     });
-    if(!data) {
-      return res.status(500).send('err');
+    if(data.length === 0) {
+      return res.status(404).send('no comment');
     }
 
     for(let key of data) {

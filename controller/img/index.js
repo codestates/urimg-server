@@ -6,5 +6,6 @@ module.exports = {
   id: require('./id'),
   mypage: require('./mypage'),
   like: require('./like'),
-  list: require('./list')
+  list: require('./list'),
+  search: require('./search')
 };
