@@ -9,7 +9,7 @@ module.exports = {
     }
 
     const { id } = accessTokenData;
-    const { image_id } = req.body;
+    const { image_id } = req.query;
 
     Users_Likes.findOne({ where: {
       user_id: id,
