@@ -19,4 +19,6 @@ router.get('/:id', imgController.id.get);
 
 router.delete('/like', imgController.like.delete);
 
+router.post('/search', imgController.search.post);
+
 module.exports = router;
