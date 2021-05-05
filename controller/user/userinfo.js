@@ -1,5 +1,6 @@
 const { Users } = require('../../models');
 const { isAuthorized } = require('../tokenFunctions');
+const { imageUpload } = require('../s3Functions');
 
 module.exports = {
   get: (req, res) => {
@@ -26,6 +27,7 @@ module.exports = {
     })
     .catch((err) => {
       console.log(err);
+      res.status(500).send('err');
     })
   },
 
@@ -50,16 +52,23 @@ module.exports = {
     })
     .catch((err) => {
       console.log(err);
+      res.status(500).send('err');
     });
   },
 
-  patch: (req, res) => {
+  patch: async (req, res) => {
     const accessTokenData = isAuthorized(req);
     if(!accessTokenData) {
       return res.status(401).send("Access token expired");
     }
-    const { email } = accessTokenData;
-    const { password, user_name, profile_image } = req.body;
+
+    const { id, email } = accessTokenData;
+    let { password, user_name, profile_image } = req.body;
+    if(profile_image) {
+      const url = await imageUpload(profile_image, id);
+      profile_image = url;
+    }
+
     Users.update(
       { password, user_name, profile_image },
       { where: { email } }
@@ -69,6 +78,7 @@ module.exports = {
     })
     .catch((err) => {
       console.log(err);
+      res.status(500).send('err');
     });
   }
 }
