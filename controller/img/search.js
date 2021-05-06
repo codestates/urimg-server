@@ -18,10 +18,6 @@ module.exports = {
       }
     })
 
-    if(data.count === 0) {
-      return res.status(404).send('Not found');
-    }
-
     for(let key of data.rows) {
       let { user_id } = key.dataValues;
       delete key.dataValues.user_id;
