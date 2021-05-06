@@ -11,6 +11,7 @@ module.exports = {
     if(!refreshToken) {
       return res.status(401).send("Refresh token expired");
     }
+    
     const { email } = refreshToken;
     Users.findOne({ where: { email } })
     .then((data) => {
@@ -23,6 +24,7 @@ module.exports = {
     })
     .catch((err) => {
       console.log(err);
+      return res.status(500).send('err');
     });
   }
 };

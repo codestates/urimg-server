@@ -7,6 +7,7 @@ module.exports = {
     if(!data) {
       return res.status(500).send('err');
     }
+    
     for(let key of data) {
       let { user_id } = key.dataValues;
       delete key.dataValues.user_id;

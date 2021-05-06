@@ -5,7 +5,6 @@ const cookieParser = require("cookie-parser");
 const express = require("express");
 const app = express();
 const http = require("http");
-
 const userRouter = require('./routes/user');
 const imgRouter = require('./routes/img');
 
@@ -24,7 +23,6 @@ app.use(
 app.use(cookieParser());
 app.use(express.urlencoded({ limit:"50mb", extended: false }));
 
-//router
 app.use('/user', userRouter);
 app.use('/img', imgRouter);
 

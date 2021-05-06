@@ -24,6 +24,7 @@ module.exports = {
       res.status(500).send('err');
     });
   },
+
   post: (req, res) => {
     const accessTokenData = isAuthorized(req);
     if(!accessTokenData) {
@@ -54,6 +55,7 @@ module.exports = {
       res.status(500).send('err');
     });
   },
+  
   delete: (req, res) => {
     const accessTokenData = isAuthorized(req);
     if(!accessTokenData) {

@@ -3,7 +3,6 @@ const { isAuthorized } = require('../tokenFunctions');
 
 module.exports = {
   get: async (req, res) => {
-
     const { image_id } = req.query;
     const comments = [];
 
@@ -28,8 +27,8 @@ module.exports = {
       });
     }
     res.status(200).send({ comments: [ ...comments ] });
-
   },
+
   post: (req, res) => {
     const accessTokenData = isAuthorized(req);
     if(!accessTokenData) {

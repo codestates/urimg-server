@@ -20,10 +20,6 @@ module.exports = {
     return res.status(200).send({ data: { access_token } });
   },
 
-  resendAccessToken: (res, access_token, data) => {
-    res.json({ data: { access_token, userInfo: data } });
-  },
-
   isAuthorized: (req) => {
     const authorization = req.headers.authorization;
     if (!authorization) {

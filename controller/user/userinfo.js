@@ -8,6 +8,7 @@ module.exports = {
     if(!accessTokenData) {
       return res.status(401).send("Access token expired");
     }
+
     const { email } = accessTokenData;
     Users.findOne({ where: { email } })
     .then((data) => {
@@ -36,6 +37,7 @@ module.exports = {
     if(!accessTokenData) {
       return res.status(401).send("Access token expired");
     }
+
     const { email } = accessTokenData;
     Users.findOne({ where: { email } })
     .then((data) => {

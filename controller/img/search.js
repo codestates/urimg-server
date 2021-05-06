@@ -36,7 +36,6 @@ module.exports = {
         }
       });
     }
-    console.log(images);
     return res.status(200).send({
       data: {
         total: data.count,
